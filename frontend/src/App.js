@@ -5,6 +5,7 @@ import NewGoal from "./components/Goallist/New/NewGoal"
 import './App.css';
 
 class App extends Component {
+
     state = {
         courseGoals: [{}]
     }

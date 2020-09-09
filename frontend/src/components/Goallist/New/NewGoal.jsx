@@ -12,16 +12,11 @@ class NewGoal extends Component {
     }
 
     addGoalHandler = (event) => {
-
         event.preventDefault();
         const newGoal = {
             id: Math.random().toString(),
             text: this.state.goalText
         };
-
-        console.log('creating new goal');
-        console.log(newGoal);
-
         this.setState({ goalText: '' })
         this.props.onAddGoal(newGoal);
     }
