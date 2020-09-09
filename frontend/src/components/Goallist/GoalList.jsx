@@ -8,8 +8,6 @@ class GoalList extends Component {
     }
 
     render () {
-        // console.log('render');
-        // console.log(this.props)
         return (
             <ul className="goal-list">
             {this.props.goals.map(goal => (

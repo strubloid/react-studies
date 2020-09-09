@@ -20,7 +20,6 @@ class App extends Component {
     }
 
     addNewGoalHandler = newGoal => {
-        console.log('Calling the course Goals');
         this.setState(state => ({courseGoals: [...state.courseGoals, newGoal]}));
     }
 
