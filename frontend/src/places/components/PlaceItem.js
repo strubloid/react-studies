@@ -3,7 +3,10 @@ import React , {useState} from 'react';
 import Card from '../../shared/components/UIElements/Card'
 import Modal from '../../shared/components/UIElements/Modal'
 import Button from '../../shared/components/FormElements/Button'
-import Map from '../../shared/components/UIElements/Map'
+import GoogleMap from '../../shared/components/UIElements/GoogleMap'
+import OpenStreetMap from '../../shared/components/UIElements/OpenStreetMap'
+
+import {Helmet} from "react-helmet";
 
 import './PlaceItem.css'
 
@@ -13,8 +16,18 @@ const PLaceItem = (props) => {
     const openMapHandler = () => setShowMap(true);
     const closeMapHandler = () => setShowMap(false);
 
+    let headers = [];
+    const addHeaderHandler = (newHeader) => {
+        headers.concat(newHeader);
+    }
+
     return (
         <React.Fragment>
+            <Helmet>
+                {
+                    headers.map( header => (header))
+                }
+            </Helmet>
             <Modal
                 show={showMap}
                 onCancel={closeMapHandler}
@@ -24,7 +37,7 @@ const PLaceItem = (props) => {
                 footer={<Button onClick={closeMapHandler}>Close</Button>}
             >
                 <div className="map-container">
-                    <Map center={props.coordinates} zoom={16}/>
+                    <OpenStreetMap addHeader={addHeaderHandler} center={props.coordinates} zoom={16}/>
                 </div>
             </Modal>
             <li className="place-item">
@@ -47,5 +60,4 @@ const PLaceItem = (props) => {
         </React.Fragment>
     );
 };
-
 export default PLaceItem;
