@@ -2,9 +2,6 @@ class Server {
 
     constructor() {
 
-        if(process.env.NODE_ENV !== 'production'){
-            require('dotenv').config()
-        }
         this.loadModules();
         this.setupFrontend();
         this.loadRouters();

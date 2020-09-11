@@ -8,6 +8,10 @@ import UserPLaces from './places/pages/UserPlaces'
 class App extends Component {
   state = {}
 
+  constructor (props) {
+    super(props);
+  }
+
   render () {
     return <>
       <Router>

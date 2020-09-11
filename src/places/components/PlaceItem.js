@@ -22,12 +22,13 @@ const PLaceItem = (props) => {
     const shoModal = () => {
         return showMap || showGMap ? true : false;
     }
+
     return (
         <React.Fragment>
             <Helmet>
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/css/ol.css" type="text/css" />
                 <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/build/ol.js"></script>
-                <script defer src="`https://maps.googleapis.com/maps/api/js?key=${process.env.GKEY}`"></script>
+                <script defer src={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}`} ></script>
             </Helmet>
             <Modal
                 show={shoModal()}
