@@ -16,28 +16,30 @@ const PLaceItem = (props) => {
     const openMapHandler = () => setShowMap(true);
     const closeMapHandler = () => setShowMap(false);
 
-    let headers = [];
-    const addHeaderHandler = (newHeader) => {
-        headers.concat(newHeader);
+    const [showGMap, setShowGMap] = useState(false);
+    const openGMapHandler = () => setShowGMap(true);
+    const closeGMapHandler = () => setShowGMap(false);
+    const shoModal = () => {
+        return showMap || showGMap ? true : false;
     }
-
     return (
         <React.Fragment>
             <Helmet>
-                {
-                    headers.map( header => (header))
-                }
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/css/ol.css" type="text/css" />
+                <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/build/ol.js"></script>
+                <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsZDaKlY-nQJB9Lf_-ZePhJa2aoquT0zg"></script>
             </Helmet>
             <Modal
-                show={showMap}
+                show={shoModal()}
                 onCancel={closeMapHandler}
                 header={props.address}
                 contentClass="place-item__modal-content"
                 footerClass="place-item__modal-actions"
-                footer={<Button onClick={closeMapHandler}>Close</Button>}
+                footer={<Button onClick={ () => { closeMapHandler(); closeGMapHandler(); }}>Close</Button>}
             >
                 <div className="map-container">
-                    <OpenStreetMap addHeader={addHeaderHandler} center={props.coordinates} zoom={16}/>
+                    {showMap && <OpenStreetMap center={props.coordinates} zoom={16}/>}
+                    {showGMap && <GoogleMap center={props.coordinates} zoom={16}/>}
                 </div>
             </Modal>
             <li className="place-item">
@@ -52,6 +54,7 @@ const PLaceItem = (props) => {
                     </div>
                     <div className="place-item__actions">
                         <Button inverse onClick={openMapHandler}>View on Map</Button>
+                        <Button inverse onClick={openGMapHandler}>Google Maps</Button>
                         <Button to={`/places/${props.id}`}>Edit</Button>
                         <Button danger>Delete</Button>
                     </div>
