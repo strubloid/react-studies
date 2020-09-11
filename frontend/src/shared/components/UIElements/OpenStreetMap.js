@@ -1,7 +1,4 @@
 import React, { useRef, useEffect } from 'react';
-
-import { Helmet } from 'react-helmet'
-
 import './Map.css';
 
 const OpenStreetMap = props => {
